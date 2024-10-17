@@ -1,0 +1,23 @@
+requires = ["tox>=4"]
+env_list = ["lint", "3.13", "3.12", "3.11", "3.10", "3.9"]
+
+[gh.python]
+"3.13" = ["3.13", "lint"]
+"3.12" = ["3.12"]
+"3.11" = ["3.11"]
+"3.10" = ["3.10"]
+"3.9" = ["3.9"]
+
+[env_run_base]
+deps = ["pdm>=2.19"]
+commands = [
+  ["pdm", "install", "--dev", "--no-self"],
+  ["pdm", "run" , "-v", "test"],
+]
+
+[env.lint]
+skip_install = true
+commands = [
+  ["pdm", "install", "--dev", "--no-self"],
+  ["pdm", "run" , "-v", "lint"],
+]
